@@ -161,7 +161,7 @@
     .side-nav { display: grid; gap: 5px; }
     .nav-item {
       align-items: center; background: transparent; border: 0; border-radius: 12px; color: #76817a;
-      cursor: pointer; display: flex; gap: 12px; min-height: 43px; padding: 0 12px; text-align: left; transition: .18s ease; width: 100%;
+      cursor: pointer; display: flex; gap: 12px; min-height: 43px; padding: 0 12px; text-align: left; text-decoration: none; transition: .18s ease; width: 100%;
     }
     .nav-item:hover { background: rgba(255,255,255,.7); color: var(--ink); }
     .nav-item.active { background: #e6f0e6; color: var(--green); font-weight: 700; }
@@ -315,8 +315,9 @@
       .layout { display: block; padding: 25px 20px 40px; }
       .site-footer-inner { padding-left: 20px; padding-right: 20px; }
       .sidebar { margin-bottom: 16px; position: static; }
-      .sidebar > .side-label, .sidebar-note, .sidebar .side-nav:not(:first-of-type) { display: none; }
+      .sidebar > .side-label, .sidebar-note { display: none; }
       .sidebar .side-nav:first-of-type { background: white; border: 1px solid var(--line); border-radius: var(--radius); display: flex; gap: 4px; padding: 4px; }
+      .sidebar .side-nav[aria-label="Belajar crypto"] { display: flex; margin-top: 8px; }
       .sidebar .nav-item { justify-content: center; }
       .back-market-button { top: 74px; }
       .topbar { height: 64px; padding: 0 20px; }
@@ -384,7 +385,7 @@
         </nav>
         <p class="side-label">Belajar</p>
         <nav class="side-nav" aria-label="Belajar crypto">
-          <button class="nav-item" id="learn-button" type="button"><span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2Z"/><path d="M8 7h8M8 11h6"/></svg></span>Dasar crypto</button>
+          <a class="nav-item" href="dasar-crypto.html"><span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2Z"/><path d="M8 7h8M8 11h6"/></svg></span>Dasar crypto</a>
         </nav>
         <div class="sidebar-note">
           <span class="note-kicker">Mulai dari sini</span>
@@ -1374,7 +1375,6 @@
       });
       renderDetail();
     }));
-    document.querySelector('#learn-button').addEventListener('click', () => showToast('Crypto adalah aset digital yang berjalan di jaringan blockchain. Pelajari risiko sebelum mengambil keputusan.'));
     window.addEventListener('resize', () => { const coin = coins.find((item) => item.id === selectedId); if (coin) drawChart(coin); });
 
     document.querySelector('#current-date').textContent = new Intl.DateTimeFormat(CryptoBrossI18n.getLocale(), { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' }).format(new Date());
